@@ -16,13 +16,18 @@ public class GetWeather {
         WeatherService weatherService = new WeatherService(
                 "http://api.weatherstack.com/current", API_KEY);
         Scanner scanner = new Scanner(System.in);
-
         System.out.print("Podaj miasto:");
         String city = scanner.nextLine();
-        Weather weather = weatherService.getCityWeather(city);
+        Object weather = weatherService.getCityWeather(city);
 
-        System.out.println("Temperatura w " + weather.getLocation().getName() + " wynosi: " +weather.getCurrent().getTemperature());
-
+        if(weather instanceof Weather) {
+            System.out.println("Instancja weather");
+            System.out.println("Temperatura w " +   ((Weather) weather).getLocation().getName()
+                    + " wynosi: " + ((Weather) weather).getCurrent().getTemperature());
+        }else if (weather instanceof ApiError){
+            System.out.println("Instancja klasy ApiError");
+            System.out.println(((ApiError) weather).getError().getInfo());
+        }
 
     }
 }
