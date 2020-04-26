@@ -4,8 +4,11 @@ public class Weather {
 
     private Double temperature;
     private String city;
+
+
     private Request request;
     private Location location;
+    private Current current;
 
     public Weather(){}
 
@@ -14,6 +17,14 @@ public class Weather {
         this.city = city;
         this.request = request;
         this.location = location;
+    }
+
+    public Current getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(Current current) {
+        this.current = current;
     }
 
     public Request getRequest() {
